@@ -66,24 +66,3 @@ https://github.com/user-attachments/assets/fef89b4e-c8ce-43d5-b20e-9fa3e15ab751
     ```
 
 5. Acesse a aplicação no navegador na porta apresentada no terminal da aplicação
-
-## Estrutura de Arquivos
-
-```
-magoo-notes/
-├── public/
-│   ├── index.html
-│   └── ...
-├── src/
-│   ├── components/
-│   │   ├── App.jsx
-│   │   ├── Sidebar.jsx
-│   │   └── Editor.jsx
-│   ├── firebase.js
-│   ├── main.jsx
-│   └── ...
-├── .gitignore
-├── package.json
-├── README.md
-└── ...
-```
