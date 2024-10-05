@@ -4,11 +4,11 @@ Magoo Notes é uma aplicação de anotações baseada em React que permite aos u
 
 ## Demonstração
 
-Você pode visualizar uma demonstração do sistema (somente leitura) no seguinte link:
+Você pode visualizar uma demonstração do sistema (somente leitura e interação limitada) no seguinte link:
 
 [Magoo Notes Demo](https://magoo-notes.netlify.app)
 
-## Demonstração Em Vídeo
+## Demonstração em Vídeo
 
 https://github.com/user-attachments/assets/fef89b4e-c8ce-43d5-b20e-9fa3e15ab751
 
@@ -35,7 +35,7 @@ https://github.com/user-attachments/assets/fef89b4e-c8ce-43d5-b20e-9fa3e15ab751
 - **Editor.jsx**: Componente que permite editar o conteúdo das notas em formato Markdown.
 - **firebase.js**: Configuração do Firebase e inicialização do Firestore.
 
-## Como Executar O Projeto Localmente Com Suas Configurações Do Firebase
+## Como Executar o Projeto Localmente com suas Configurações do Firebase
 
 ### Pré-requisitos
 
