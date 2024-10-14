@@ -56,7 +56,8 @@ export default function App() {
         }
     }, [currentNote])
     
-    // useEffect para salvar a nota automaticamente após 500ms de inatividade
+    // Debouncing: Aguarda 500ms de inatividade antes de salvar automaticamente a nota.
+    // Isso evita múltiplas atualizações seguidas ao Firebase enquanto o usuário está digitando.
     React.useEffect(() => {
         const timeoutId = setTimeout(() => {
             if (tempNoteText !== currentNote.body) {
@@ -64,41 +65,42 @@ export default function App() {
             }
         }, 500)
         // Retorna a função de limpeza para cancelar o timeout
+        // Limpar o timeout previne que a função de atualização seja chamada muito frequentemente.
         return () => clearTimeout(timeoutId)
     }, [tempNoteText])
 
     // Função assíncrona para criar uma nova nota
     async function createNewNote() {
-    // Cria um novo objeto de nota com corpo padrão e timestamps
-    const newNote = {
-        body: "# Type your markdown note's title here",
-        createdAt: Date.now(),
-        updatedAt: Date.now()
-    }
-    // Adiciona a nova nota à coleção de notas no banco de dados
-    const newNoteRef = await addDoc(notesCollection, newNote)
-    // Define o ID da nota atual para o ID da nova nota criada
-    setCurrentNoteId(newNoteRef.id)
+        // Cria um novo objeto de nota com corpo padrão e timestamps
+        const newNote = {
+            body: "# Type your markdown note's title here",
+            createdAt: Date.now(),
+            updatedAt: Date.now()
+        }
+        // Adiciona a nova nota à coleção de notas no banco de dados
+        const newNoteRef = await addDoc(notesCollection, newNote)
+        // Define o ID da nota atual para o ID da nova nota criada
+        setCurrentNoteId(newNoteRef.id)
     }
 
     // Função assíncrona para atualizar uma nota existente
     async function updateNote(text) {
-    // Referência ao documento da nota atual no banco de dados
-    const docRef = doc(db, "notes", currentNoteId)
-    // Atualiza o corpo e o timestamp da nota no banco de dados
-    await setDoc(
-        docRef, 
-        { body: text, updatedAt: Date.now() }, 
-        { merge: true }
-    )
+        // Referência ao documento da nota atual no banco de dados
+        const docRef = doc(db, "notes", currentNoteId)
+        // Atualiza o corpo e o timestamp da nota no banco de dados
+        await setDoc(
+            docRef, 
+            { body: text, updatedAt: Date.now() }, 
+            { merge: true }
+        )
     }
 
     // Função assíncrona para deletar uma nota
     async function deleteNote(noteId) {
-    // Referência ao documento da nota a ser deletada no banco de dados
-    const docRef = doc(db, "notes", noteId)
-    // Deleta a nota do banco de dados
-    await deleteDoc(docRef)
+        // Referência ao documento da nota a ser deletada no banco de dados
+        const docRef = doc(db, "notes", noteId)
+        // Deleta a nota do banco de dados
+        await deleteDoc(docRef)
     }
 
     // Renderiza o componente principal
